@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-# A sample Gemfile
+
 source "http://rubygems.org"
 
 gem 'sinatra'
@@ -20,5 +19,3 @@ group :test do
   gem 'rack-test'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
-
-# gem "rails"
