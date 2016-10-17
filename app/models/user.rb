@@ -13,4 +13,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  # def total_profit
+  #   #this method will display a users total profit.
+  #   self.sessions.select do |session|
+  #     session.amount_won
+  #   end.sum
+  # end
+
 end
