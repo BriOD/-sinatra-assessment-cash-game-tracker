@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017211717) do
+ActiveRecord::Schema.define(version: 20161017213002) do
 
   create_table "game_sessions", force: :cascade do |t|
+    t.string "date"
+    t.string "amount_won"
+    t.text   "notes"
+  end
+
+  create_table "sessions", force: :cascade do |t|
     t.string "date"
     t.string "amount_won"
     t.text   "notes"

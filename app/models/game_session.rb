@@ -1,5 +1,5 @@
-class Game_session < ActiveRecord::Base
+class Session < ActiveRecord::Base
     belongs_to :user
 
-    
+
 end

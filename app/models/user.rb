@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   validates_presence_of :username, :email, :password
-  has_many :game_sessions
+  has_many :sessions
   has_secure_password
 
   def slug

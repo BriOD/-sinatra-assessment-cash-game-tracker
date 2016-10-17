@@ -1,6 +1,6 @@
-class CreateGameSessions < ActiveRecord::Migration
+class CreateSessions < ActiveRecord::Migration
   def change
-    create_table :game_sessions do |t|
+    create_table :sessions do |t|
       t.string :date
       t.string :amount_won
       t.text :notes
