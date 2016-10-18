@@ -55,6 +55,20 @@ patch '/sessions/:id' do
   end
 end
 
+get '/sessions/:id/delete' do
+  if logged_in?
+    @session = Session.find_by_id(params[:id])
+    if @session.user_id == current_user.id
+      @session.delete
+      redirect to '/sessions'
+    else
+      redirect to '/sessions'
+    end
+  else
+    redirect to '/login'
+  end
+end
+
 
 
 end
