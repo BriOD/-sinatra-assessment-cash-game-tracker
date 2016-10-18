@@ -3,12 +3,8 @@
 
 <% current_user.sessions.each_with_index do |session, index| %>
 <li>
-<h4><%= index + 1 %>:</h4><br>
-              Date: <%= session.date %><br>
-              Profit: <%= session.amount_won %><br>
-            <% if !session.notes = "" %>
-              Notes:  <%= session.notes %></li><br>
-              <% end %>
+<%= index + 1 %>:</h4>:  <a href="/sessions/<%= session.id %>"><%= session.date %></a>
+
 <% end %>
 
 <p>
