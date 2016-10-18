@@ -14,8 +14,18 @@ class SessionsController < ApplicationController
     end
   end
 
-  post 'sessions' do
+  post '/sessions' do
+    if params[:date] == "" || params[:amount_won] == ""
+      redirect '/sessions/new'
+    else
+      @session = Session.create(params)
+      redirect "/sessions/#{@session.id}"
+    end
+  end
 
+  get '/sessions/:id' do
+    @session = Session.find(params[:id])
+    erb :'sessions/show'
   end
 
 
