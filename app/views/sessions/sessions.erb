@@ -1,10 +1,19 @@
 <h2>Welcome, <%= current_user.username %></h2>
 <h3>Here are your current sessions</h3>
 
-<% current_user.sessions.each do |session| %>
-<li><%= session %></li>
+<% current_user.sessions.each_with_index do |session, index| %>
+<li>
+<h4><%= index + 1 %>:</h4><br>
+              Date: <%= session.date %><br>
+              Profit: <%= session.amount_won %><br>
+            <% if !session.notes = "" %>
+              Notes:  <%= session.notes %></li><br>
+              <% end %>
 <% end %>
 
+<p>
+  Click here to <a href="/sessions/new">Create A New Session</a>
+</p>
 <p>
   Click here to <a href="/logout">Log Out</a>
 </p>

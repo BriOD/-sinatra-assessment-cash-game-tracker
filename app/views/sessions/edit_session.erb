@@ -1,0 +1,10 @@
+
+<h2> Edit Session </h2>
+
+<form method="POST" action="/sessions/<%=@session.id%>">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <input type="text" name="date" value="<%= @session.date %>">
+  <input type="text" name="amount_won" value="<%= @session.amount_won %>">
+  <input type="text" name="notes" value="<%= @session.notes %>">
+  <input type="submit" value="submit">
+</form>

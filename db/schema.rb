@@ -12,11 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20161017220310) do
 
-  create_table "game_sessions", force: :cascade do |t|
-    t.string "date"
-    t.string "amount_won"
-    t.text   "notes"
-  end
+
 
   create_table "sessions", force: :cascade do |t|
     t.string  "date"
