@@ -13,11 +13,13 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def total_profit
-  #   #this method will display a users total profit.
-  #   self.sessions.select do |session|
-  #     session.amount_won
-  #   end.sum
-  # end
+  def total_profit
+    #this method will display a users total profit.
+    won = []
+    self.sessions.each do |session|
+      won << session.amount_won.to_i
+    end
+    won.inject(0, :+)
+  end
 
 end
