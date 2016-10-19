@@ -1,5 +1,8 @@
 <h2>Sign Up</h2>
 
+<% if flash.has?(:error) %>
+  <%= flash[:error] %>
+<% end %>
 
 <form action="/signup" method="POST">
   <p>Username: <input type="text" name="username"></p>
@@ -7,7 +10,3 @@
   <p>Password: <input type="password" name="password"></p>
   <p><input type="submit" value="Sign Up"></p>
 </form>
-
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
