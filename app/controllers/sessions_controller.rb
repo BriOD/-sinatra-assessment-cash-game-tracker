@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
 
     get '/sessions/new' do
       if !logged_in?
+        flash[:message] = "You must be logged in to create a new session."
         redirect '/'
       else
         erb :'sessions/new'
@@ -40,6 +41,7 @@ class SessionsController < ApplicationController
         @session = Session.find(params[:id])
         erb :'sessions/show'
       else
+        flash[:message] = "You must be logged in to view a session."
         redirect '/'
       end
 
@@ -53,6 +55,7 @@ class SessionsController < ApplicationController
       if @session.user_id == current_user.id
        erb :'sessions/edit_session'
       else
+        flash[:message] = "You must be logged in to edit a new session."
         redirect to '/sessions'
       end
     else
