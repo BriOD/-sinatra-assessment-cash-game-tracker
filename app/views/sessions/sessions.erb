@@ -3,7 +3,7 @@
 
 <% current_user.sessions.each_with_index do |session, index| %>
 <li>
-<%= index + 1 %>:</h4>:  <a href="/sessions/<%= session.id %>"><%= session.date %></a>
+<%= index + 1 %>:</h4>  <a href="/sessions/<%= session.id %>"><%= session.date %></a>
 
 <% end %>
 
