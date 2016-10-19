@@ -6,6 +6,8 @@ class SessionsController < ApplicationController
       erb :'sessions/sessions'
     end
 
+##########   CREATE A NEW SESSION   #############
+
     get '/sessions/new' do
       if !logged_in?
         redirect '/'
@@ -23,10 +25,14 @@ class SessionsController < ApplicationController
       end
     end
 
+##########   SHOW SESSION   #############
+
     get '/sessions/:id' do
       @session = Session.find(params[:id])
       erb :'sessions/show'
     end
+
+##########   EDIT SESSION   #############
 
     get '/sessions/:id/edit' do
     if logged_in?
@@ -54,6 +60,8 @@ class SessionsController < ApplicationController
       redirect to "/sessions/#{@session.id}"
     end
   end
+
+##########   DELETE SESSION   #############
 
   get '/sessions/:id/delete' do
     if logged_in?

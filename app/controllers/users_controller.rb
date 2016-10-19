@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+
+##########   SIGN UP   #############
+
   get '/signup' do
       if logged_in?
         redirect '/sessions'
@@ -7,6 +10,8 @@ class UsersController < ApplicationController
       erb :'/users/signup'
     end
   end
+
+##########   CREATE A USER   #############
 
   post '/users' do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
@@ -18,6 +23,9 @@ class UsersController < ApplicationController
     end
   end
 
+
+##########   LOG IN   #############
+
   get '/login' do
     if !logged_in?
       erb :'users/login'
@@ -25,6 +33,9 @@ class UsersController < ApplicationController
       redirect '/sessions'
     end
   end
+
+##########   AUTHENTICATE LOG IN   #############
+
 
   post '/login' do
     if params[:username] == "" || params[:password] == ""
@@ -39,6 +50,9 @@ class UsersController < ApplicationController
       redirect '/signup'
     end
   end
+
+
+##########   LOG OUT   #############
 
   get '/logout' do
     session.destroy
