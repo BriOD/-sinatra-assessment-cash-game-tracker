@@ -1,4 +1,8 @@
+require 'rack-flash'
+
+
 class UsersController < ApplicationController
+  use Rack::Flash
 
 
 
@@ -16,13 +20,15 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
-      flash[:message] = "Please complete the forms."
+
+      flash[:message] = "Please fill in all forms."
       redirect '/signup'
+
     else
       user = User.create(params)
       session[:user_id] = user.id
-      flash[:message] = "You have successfully signed up."
 
+      flash[:message] = "You have successfully signed up."
       redirect '/sessions'
     end
   end
@@ -49,8 +55,10 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      flash[:message] = "You have signed in successfully."
       redirect '/sessions'
     else
+      flash[:message] = "Invalid username or password. Please try again."
       redirect '/login'
     end
   end
