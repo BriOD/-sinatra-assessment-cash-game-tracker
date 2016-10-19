@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
 
+
 ##########   SIGN UP   #############
 
   get '/signup' do
@@ -13,12 +14,15 @@ class UsersController < ApplicationController
 
 ##########   CREATE A USER   #############
 
-  post '/users' do
+  post '/signup' do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      flash[:message] = "Please complete the forms."
       redirect '/signup'
     else
       user = User.create(params)
       session[:user_id] = user.id
+      flash[:message] = "You have successfully signed up."
+
       redirect '/sessions'
     end
   end

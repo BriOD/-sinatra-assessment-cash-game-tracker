@@ -1,5 +1,6 @@
 require './config/environment'
 
+
 class ApplicationController < Sinatra::Base
 
     configure do
@@ -7,6 +8,8 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     set :session_secret, "password_security"
     enable :sessions
+    use Rack::Flash
+
   end
 
   get '/' do

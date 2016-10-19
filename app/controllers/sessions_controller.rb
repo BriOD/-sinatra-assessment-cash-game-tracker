@@ -1,6 +1,8 @@
 #THIS IS A CASH GAME SESSION CONTROLLER, NOT A SESSION FOR A BROWSER!
 
 class SessionsController < ApplicationController
+  use Rack::Flash
+
 
     get '/sessions' do
       erb :'sessions/sessions'
