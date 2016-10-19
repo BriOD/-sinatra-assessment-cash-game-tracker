@@ -21,14 +21,14 @@ class UsersController < ApplicationController
   post '/signup' do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
 
-      flash[:error] = "Please fill in all forms."
+      flash[:message] = "Please fill in all forms."
       redirect '/signup'
 
     else
       user = User.create(params)
       session[:user_id] = user.id
 
-      flash[:error] = "You have signed up."
+      flash[:message] = "You have signed up."
       redirect '/sessions'
     end
   end
@@ -49,12 +49,15 @@ class UsersController < ApplicationController
 
   post '/login' do
     if params[:username] == "" || params[:password] == ""
+      flash[:message] = "Please fill in all forms."
       redirect '/login'
     end
 
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      flash[:message] = "You have successfully logged in, welcome!"
+
       redirect '/sessions'
     else
       redirect '/login'
@@ -66,6 +69,7 @@ class UsersController < ApplicationController
 
   get '/logout' do
     session.destroy
+
     redirect '/'
   end
 

@@ -1,11 +1,16 @@
 <br><br>
 
+
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h2>Session Info:</h2>
 <p>
   Session Date: <%= @session.date %>
 </p>
 <p>
-  Session Profit: <%= @session.amount_won %>
+  Session Profit: $<%= @session.amount_won %>
 </p>
 <p>
   Session Notes: <%= @session.notes %>

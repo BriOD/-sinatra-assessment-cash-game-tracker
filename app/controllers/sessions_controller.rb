@@ -5,7 +5,11 @@ class SessionsController < ApplicationController
 
 
     get '/sessions' do
+      if logged_in?
       erb :'sessions/sessions'
+      else
+        redirect '/'
+      end
     end
 
 ##########   CREATE A NEW SESSION   #############
@@ -20,9 +24,11 @@ class SessionsController < ApplicationController
 
     post '/sessions' do
       if params[:date] == "" || params[:amount_won] == ""
+        flash[:message] = "Please fill in all forms."
         redirect '/sessions/new'
       else
         @session = current_user.sessions.create(date: params[:date], amount_won: params[:amount_won], notes: params[:notes])
+        flash[:message] = "You have successfully created a new session."
         redirect "/sessions/#{@session.id}"
       end
     end
@@ -30,8 +36,13 @@ class SessionsController < ApplicationController
 ##########   SHOW SESSION   #############
 
     get '/sessions/:id' do
-      @session = Session.find(params[:id])
-      erb :'sessions/show'
+      if logged_in?
+        @session = Session.find(params[:id])
+        erb :'sessions/show'
+      else
+        redirect '/'
+      end
+
     end
 
 ##########   EDIT SESSION   #############
@@ -45,7 +56,8 @@ class SessionsController < ApplicationController
         redirect to '/sessions'
       end
     else
-      redirect to '/login'
+      flash[:message] = "You have to be logged in to edit a session."
+      redirect to '/'
     end
   end
 
@@ -59,6 +71,8 @@ class SessionsController < ApplicationController
       @session.notes = params[:notes]
 
       @session.save
+      flash[:message] = "You have successfully edited this session."
+
       redirect to "/sessions/#{@session.id}"
     end
   end
@@ -70,12 +84,15 @@ class SessionsController < ApplicationController
       @session = Session.find_by_id(params[:id])
       if @session.user_id == current_user.id
         @session.delete
+        flash[:message] = "You have successfully deleted a session."
+
         redirect to '/sessions'
       else
         redirect to '/sessions'
       end
     else
-      redirect to '/login'
+      flash[:message] = "You have to be logged in to delete a session."
+      redirect to '/'
     end
 end
 
