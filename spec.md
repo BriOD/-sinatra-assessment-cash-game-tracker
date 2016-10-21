@@ -12,7 +12,7 @@ Specs:
 -     User id must match the user_id associated with the content they wish to edit
 - [x] Include user input validations
 -     If any of the input fields are blank the form won't go through and will redirect
-- [] Display validation failures to user with error message (example form URL e.g. /posts/new)
+- [x] Display validation failures to user with error message (example form URL e.g. /posts/new)
 -     Used rack-flash3 to set up flash messages
 - [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
