@@ -9,7 +9,6 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_security"
     enable :sessions
     use Rack::Flash
-
   end
 
   get '/' do

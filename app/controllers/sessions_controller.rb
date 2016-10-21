@@ -3,10 +3,10 @@
 class SessionsController < ApplicationController
   use Rack::Flash
 
-
+  ##########   DISPLAYS ALL THE SESSIONS   #############
     get '/sessions' do
       if logged_in?
-      erb :'sessions/sessions'
+        erb :'sessions/sessions'
       else
         redirect '/'
       end
@@ -55,7 +55,7 @@ class SessionsController < ApplicationController
       if @session.user_id == current_user.id
        erb :'sessions/edit_session'
       else
-        flash[:message] = "You must be logged in to edit a new session."
+        flash[:message] = "You can only edit your own sessions."
         redirect to '/sessions'
       end
     else
